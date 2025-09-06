@@ -100,9 +100,6 @@ main()
 async function main() {
     await mongoose.connect(dbUrl);
 }
-// app.get("/", (req, res) => {
-//     res.send("hi,i am root");
-// });
 
 // const validateListing = (req, res, next) => {
 //     let { error } = listingSchema.validate(req.body);
