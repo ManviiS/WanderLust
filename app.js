@@ -37,7 +37,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(methodOverride("_method"));
 app.engine('ejs', ejsMate);
-const dbUrl=process.env.ATLASDB_URL;
+// const dbUrl=process.env.ATLASDB_URL;
 const store=MongoStore.create({
     mongoUrl:dbUrl,
     crypto:{
@@ -90,16 +90,28 @@ app.use((req,res,next)=>{
 
 // const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
 
-main()
-    .then(() => {
-        console.log("connectd to db");
-    })
-    .catch((err) => {
-        console.log(err);
-    });
+// main()
+//     .then(() => {
+//         console.log("connectd to db");
+//     })
+//     .catch((err) => {
+//         console.log(err);
+//     });
+// async function main() {
+//     await mongoose.connect(dbUrl);
+// }
+// const mongoose = require("mongoose");
+
+// Use Atlas DB URL if available, else fallback to local
+const dbUrl = process.env.ATLASDB_URL || "mongodb://127.0.0.1:27017/wanderlust";
+
 async function main() {
-    await mongoose.connect(dbUrl);
+  await mongoose.connect(dbUrl);
+  console.log("✅ Connected to MongoDB");
 }
+
+main().catch((err) => console.log(err));
+
 
 // const validateListing = (req, res, next) => {
 //     let { error } = listingSchema.validate(req.body);
