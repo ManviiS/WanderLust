@@ -81,6 +81,7 @@ main()
         console.log(err);
     });
 async function main() {
+    console.log("DB URL:", dbUrl);
     await mongoose.connect(dbUrl);
 }
 
